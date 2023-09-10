@@ -51,8 +51,9 @@ clang(){
 
 clean(){
   echo "${GREEN}***** Cleaning in Progress *****${STD}"
-  make clean -j$(nproc) O=out
-  make mrproper -j$(nproc) O=out
+  make clean -j$(nproc)
+  make mrproper -j$(nproc)
+  rm -rf out
   echo "${GREEN}***** Cleaning Done *****${STD}"
 }
 
@@ -78,7 +79,7 @@ anykernel3(){
     cd $PARENT_DIR/AnyKernel3
     git reset --hard
     cp $DIR/out/arch/arm64/boot/Image.gz-dtb Image.gz-dtb
-    sed -i "s/ExampleKernel by osm0sis @ xda-developers/AntiGravity Kernel by TQMatvey @ Telegram/g" anykernel.sh
+    sed -i "s/ExampleKernel by osm0sis @ xda-developers/PixelHunter Kernel by TQMatvey @ Telegram/g" anykernel.sh
     sed -i "s/=maguro/=OnePlus6/g" anykernel.sh
     sed -i "s/=toroplus/=OnePlus6T/g" anykernel.sh
     sed -i "s/=toro/=/g" anykernel.sh
@@ -101,7 +102,7 @@ anykernel3(){
 build_kernel_sdm845(){
   build_kernel
   curtime=`date +"%m_%d_%H%M"`
-  releasefilename=AntiGravity_Test_${curtime}_${VARIANT}
+  releasefilename=PixelHunter_Test_${curtime}_${VARIANT}
   anykernel3
   clean
 }
